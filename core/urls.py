@@ -1,3 +1,4 @@
+
 """
 URL configuration for core project.
 
@@ -15,8 +16,12 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
-
+from django.urls import path,include
+from django.shortcuts import redirect
 urlpatterns = [
+    path('', lambda request: redirect('/api/')),
+    path('api/', lambda request: redirect('/api/tasks/')), 
     path('admin/', admin.site.urls),
+    path('api/', include('todo.urls')),
+    path('api/', include('api.urls')),
 ]
