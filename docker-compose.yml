@@ -3,17 +3,17 @@ version: "3.9"
 services:
 
   web:
-    build: ./backend
+    build: ./
     container_name: django_app
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
-      - ./backend:/app
+      - ./:/app
     ports:
       - "8000:8000"
     depends_on:
       - db
     env_file:
-      - ./backend/.env
+      - ./.env
     networks:
       - app_network
 
@@ -22,7 +22,7 @@ services:
     container_name: postgres_db
     restart: always
     env_file:
-      - ./backend/.env
+      - ./.env
     volumes:
       - postgres_data:/var/lib/postgresql/data/
     ports:
